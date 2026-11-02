@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FSL__Same_Resource_Same_Start</fullName>
+    <active>true</active>
+    <description>Can&apos;t be same start and same reosurce</description>
+    <errorConditionFormula>TEXT(FSL__Time_Dependency__c) = &quot;Same Start&quot; &amp;&amp; FSL__Same_Resource__c</errorConditionFormula>
+    <errorMessage>Resource dependency is invalid. Time Dependency can&apos;t be Same Start when same resource is required.</errorMessage>
+</ValidationRule>

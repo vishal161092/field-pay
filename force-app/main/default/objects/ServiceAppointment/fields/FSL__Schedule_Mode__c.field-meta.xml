@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FSL__Schedule_Mode__c</fullName>
+    <deprecated>false</deprecated>
+    <label>Schedule Mode</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Manual</fullName>
+                <default>false</default>
+                <label>Manual</label>
+            </value>
+            <value>
+                <fullName>Automatic</fullName>
+                <default>false</default>
+                <label>Automatic</label>
+            </value>
+            <value>
+                <fullName>Optimization</fullName>
+                <default>false</default>
+                <label>Optimization</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>true</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Drag and Drop</fullName>
+                <default>false</default>
+                <label>Drag and Drop</label>
+            </value>
+            <value>
+                <fullName>Schedule</fullName>
+                <default>false</default>
+                <label>Schedule</label>
+            </value>
+            <value>
+                <fullName>Global Optimization</fullName>
+                <default>false</default>
+                <label>Global Optimization</label>
+            </value>
+            <value>
+                <fullName>In Day Optimization</fullName>
+                <default>false</default>
+                <label>In Day Optimization</label>
+            </value>
+            <value>
+                <fullName>Resource Optimization</fullName>
+                <default>false</default>
+                <label>Resource Optimization</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

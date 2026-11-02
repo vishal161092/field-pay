@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LS_Resources</fullName>
+    <columns>Name</columns>
+    <columns>LastModifiedDate</columns>
+    <columns>LastModifiedBy</columns>
+    <columns>RelatedRecord</columns>
+    <columns>ResourceType</columns>
+    <columns>IsActive</columns>
+    <columns>Role__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>User_Type__c</field>
+        <operation>equals</operation>
+        <value>Lightning Scheduler (LS)</value>
+    </filters>
+    <label>LS Resources</label>
+</ListView>

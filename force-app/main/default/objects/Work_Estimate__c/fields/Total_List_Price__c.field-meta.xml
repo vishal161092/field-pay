@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_List_Price__c</fullName>
+    <label>Total List Price</label>
+    <summarizedField>Estimate_Line_Item__c.Subtotal__c</summarizedField>
+    <summaryForeignKey>Estimate_Line_Item__c.Estimate__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

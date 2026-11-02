@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FSL__Related_Service_with_time_dependency</fullName>
+    <active>true</active>
+    <description>If related service is not empty then time dependency is not empty</description>
+    <errorConditionFormula>( !ISBLANK(FSL__Related_Service__c) &amp;&amp; ( ISBLANK(TEXT(FSL__Time_Dependency__c)) &amp;&amp; !FSL__Same_Day__c &amp;&amp; !FSL__Same_Resource__c ) )</errorConditionFormula>
+    <errorMessage>Select a valid dependency type. If the appointments must be assigned to the same resource, the dependency type can’t be Same Start.</errorMessage>
+</ValidationRule>

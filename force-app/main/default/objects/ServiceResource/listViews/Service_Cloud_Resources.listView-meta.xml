@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Service_Cloud_Resources</fullName>
+    <columns>Name</columns>
+    <columns>LastModifiedDate</columns>
+    <columns>RelatedRecord</columns>
+    <columns>ResourceType</columns>
+    <columns>IsActive</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ResourceType</field>
+        <operation>equals</operation>
+        <value>A</value>
+    </filters>
+    <label>Service Cloud Resources</label>
+</ListView>

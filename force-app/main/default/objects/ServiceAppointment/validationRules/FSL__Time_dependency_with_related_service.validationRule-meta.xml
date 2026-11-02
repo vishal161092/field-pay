@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FSL__Time_dependency_with_related_service</fullName>
+    <active>true</active>
+    <errorConditionFormula>( ISBLANK(FSL__Related_Service__c) &amp;&amp; ( !ISBLANK(TEXT(FSL__Time_Dependency__c)) ||  FSL__Same_Day__c || FSL__Same_Resource__c ) )</errorConditionFormula>
+    <errorDisplayField>FSL__Related_Service__c</errorDisplayField>
+    <errorMessage>Please select Related Service.</errorMessage>
+</ValidationRule>

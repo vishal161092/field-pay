@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Complete_Geolocation__c</fullName>
+    <description>Device GPS coordinates captured when the technician completes work, via the Complete Work data capture flow.</description>
+    <displayLocationInDecimal>true</displayLocationInDecimal>
+    <label>Complete Geolocation</label>
+    <required>false</required>
+    <scale>5</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Location</type>
+</CustomField>

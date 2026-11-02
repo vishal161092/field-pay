@@ -1,0 +1,1012 @@
+:host {
+    --de-navy: #002b5c;
+    --de-blue: #0056b3;
+    --de-accent: #0056b3; /* brand accent — blue (red branding retired) */
+    --de-warn: #b26a00; /* out-of-stock / warning (amber, not brand-red) */
+    --de-ink: #16325c;
+    --de-muted: #5c6b82;
+    --de-line: #e3e8f0;
+    --de-bg: #f4f6fb;
+    --de-surface: #ffffff;
+    --de-green: #1a9d5a;
+    --de-radius: 14px;
+    --de-shadow: 0 2px 10px rgba(0, 43, 92, 0.08);
+    display: block;
+    background: var(--de-bg);
+    font-family: 'Salesforce Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--de-ink);
+    min-height: 100%;
+}
+
+.de-shell {
+    max-width: 720px;
+    margin: 0 auto;
+    padding-bottom: 2rem;
+}
+
+/* ===================== Header ===================== */
+.de-header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+    background: linear-gradient(120deg, var(--de-navy), var(--de-blue));
+    color: #fff;
+}
+.de-header__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+.de-logo {
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-size: 0.95rem;
+    padding: 0.25rem 0.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    border-radius: 6px;
+}
+.de-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0;
+}
+.de-subtitle {
+    font-size: 0.75rem;
+    opacity: 0.85;
+    margin: 0.1rem 0 0;
+}
+
+/* ===================== Stepper ===================== */
+.de-steps {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem;
+    padding: 0.85rem 1rem;
+    background: var(--de-surface);
+    border-bottom: 1px solid var(--de-line);
+    list-style: none;
+    margin: 0;
+}
+.de-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    flex: 1;
+    position: relative;
+}
+.de-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 60%;
+    width: 80%;
+    height: 2px;
+    background: var(--de-line);
+}
+.de-step__dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--de-line);
+    border: 2px solid var(--de-line);
+    z-index: 1;
+}
+.de-step__label {
+    font-size: 0.7rem;
+    color: var(--de-muted);
+    font-weight: 600;
+}
+.de-step_active .de-step__dot {
+    background: var(--de-blue);
+    border-color: var(--de-blue);
+    box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.15);
+}
+.de-step_active .de-step__label {
+    color: var(--de-blue);
+}
+.de-step_done .de-step__dot {
+    background: var(--de-green);
+    border-color: var(--de-green);
+}
+.de-step_done::after {
+    background: var(--de-green);
+}
+
+/* ===================== Body / cards ===================== */
+.de-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.de-card {
+    background: var(--de-surface);
+    border: 1px solid var(--de-line);
+    border-radius: var(--de-radius);
+    box-shadow: var(--de-shadow);
+    padding: 1rem;
+}
+.de-section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem;
+    color: var(--de-navy);
+}
+.de-title-icon {
+    --sds-c-icon-color-foreground-default: var(--de-blue);
+}
+.de-section-title_inline {
+    margin: 0;
+}
+/* Card-top back nav (used on the Payment stage so there's a single, subtle back
+   affordance instead of a second big "Back" button beside the payment card). */
+.de-card__nav {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 0.75rem;
+}
+.de-card__nav .de-section-title {
+    margin: 0;
+}
+/* Struck-through original value (e.g. labour waived under AMC). */
+.de-strike {
+    color: var(--de-muted);
+    margin-right: 0.35rem;
+    text-decoration: line-through;
+}
+.de-hint {
+    font-size: 0.8rem;
+    color: var(--de-muted);
+    margin: 0 0 0.75rem;
+    line-height: 1.4;
+}
+.de-empty {
+    font-size: 0.82rem;
+    color: var(--de-muted);
+    text-align: center;
+    padding: 1rem 0;
+}
+
+/* ===================== Diagram ===================== */
+.de-diagram {
+    border-radius: 10px;
+    overflow: hidden;
+    background: #eef2f8;
+    border: 1px solid var(--de-line);
+}
+.de-diagram__img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* ===================== Chips ===================== */
+.de-chips {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+}
+.de-chip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid var(--de-line);
+    border-radius: 10px;
+    background: #fbfcfe;
+}
+.de-chip__main {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-width: 0;
+}
+.de-chip__no {
+    flex: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--de-navy);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+}
+.de-chip__text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+.de-chip__name {
+    font-size: 0.83rem;
+    font-weight: 600;
+    white-space: normal;
+    line-height: 1.3;
+}
+.de-chip__num {
+    font-size: 0.72rem;
+    color: var(--de-muted);
+    font-family: 'SF Mono', ui-monospace, monospace;
+}
+.de-chip__desc {
+    font-size: 0.72rem;
+    color: var(--de-muted);
+    line-height: 1.3;
+    margin-top: 0.1rem;
+    white-space: normal;
+}
+.de-chip__actions {
+    display: flex;
+    gap: 0.35rem;
+    flex: none;
+}
+
+/* ===================== Search ===================== */
+.de-search {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    position: relative;
+}
+.de-search__input {
+    flex: 1;
+}
+/* Icon-only search trigger — brand-blue, aligned with the input box. */
+.de-search__btn {
+    flex: none;
+    --slds-c-button-brand-color-background: var(--de-blue);
+    --slds-c-button-brand-color-border: var(--de-blue);
+    --slds-c-icon-color-foreground: #fff;
+}
+
+/* ===================== Parts hierarchy ===================== */
+.de-parts,
+.de-reco-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+}
+.de-part {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--de-line);
+    border-radius: 10px;
+    background: #fbfcfe;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+.de-part_out {
+    border-color: rgba(178, 106, 0, 0.35);
+    background: #fffdf7;
+}
+.de-part__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.6rem 0.7rem;
+}
+.de-part__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+    flex: 1;
+}
+.de-part__name {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+.de-part__code {
+    font-size: 0.7rem;
+    color: var(--de-muted);
+    font-family: 'SF Mono', ui-monospace, monospace;
+}
+.de-part__desc {
+    font-size: 0.72rem;
+    color: var(--de-muted);
+    line-height: 1.3;
+    margin-top: 0.1rem;
+}
+/* Numbered badge on an identify part row (correlates with the diagram callouts). */
+.de-part__no {
+    flex: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--de-navy);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+    align-self: flex-start;
+    margin-top: 0.1rem;
+}
+.de-stock {
+    font-size: 0.7rem;
+    font-weight: 600;
+    width: fit-content;
+    padding: 0.05rem 0.4rem;
+    border-radius: 6px;
+    margin-top: 0.1rem;
+}
+.de-stock_in {
+    color: var(--de-green);
+    background: rgba(26, 157, 90, 0.1);
+}
+.de-stock_out {
+    color: var(--de-warn);
+    background: rgba(178, 106, 0, 0.1);
+}
+.de-part__foot {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: none;
+}
+.de-part__price {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--de-navy);
+}
+.de-alt-toggle {
+    --slds-c-button-color-border: var(--de-warn);
+    --sds-c-icon-color-foreground-default: var(--de-warn);
+}
+
+/* ---- In-cart state (part already added to the estimate) ---- */
+.de-part_incart {
+    border-color: var(--de-green);
+    background: #f2fbf6;
+    box-shadow: inset 3px 0 0 var(--de-green);
+}
+.de-reco_incart {
+    border-color: var(--de-green);
+    background: #f2fbf6;
+}
+.de-incart {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    width: fit-content;
+    margin-top: 0.15rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--de-green);
+    background: rgba(26, 157, 90, 0.12);
+    padding: 0.05rem 0.4rem;
+    border-radius: 6px;
+}
+.de-incart__tick {
+    --sds-c-icon-color-foreground-default: var(--de-green);
+}
+/* "Add another" button once the part is in the cart — green, subdued. */
+.de-add_incart {
+    --slds-c-button-color-border: var(--de-green);
+    --sds-c-icon-color-foreground-default: var(--de-green);
+}
+
+/* Inline alternate expander (below an out-of-stock part) */
+.de-alt-inline {
+    border-top: 1px dashed rgba(178, 106, 0, 0.3);
+    padding: 0.6rem 0.7rem 0.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    animation: de-expand 0.15s ease-out;
+}
+@keyframes de-expand {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.de-alt-inline__head {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--de-warn);
+    margin: 0;
+}
+.de-alt-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.5rem 0.6rem;
+    border: 1px solid var(--de-line);
+    border-radius: 8px;
+    background: #fff;
+}
+/* Alternate that has been added to the cart — green accent to match part rows. */
+.de-alt-row_incart {
+    border-color: var(--de-green);
+    background: rgba(26, 157, 90, 0.06);
+}
+.de-alt-row__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+}
+.de-alt-row__name {
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+.de-alt-row__reason {
+    font-size: 0.72rem;
+    color: var(--de-blue);
+}
+.de-alt-row__stock {
+    font-size: 0.7rem;
+    color: var(--de-muted);
+}
+.de-alt-row__foot {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: none;
+}
+.de-alt-row__price {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--de-navy);
+}
+
+/* Cart quantity stepper */
+.de-stepper {
+    display: inline-flex;
+    align-items: stretch;
+    flex: none;
+    border: 1px solid var(--de-line);
+    border-radius: 8px;
+    background: #fff;
+    overflow: hidden;
+}
+.de-stepper__btn {
+    flex: none;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: none;
+    background: #f4f6fb;
+    color: var(--de-navy);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.de-stepper__btn:first-child {
+    border-right: 1px solid var(--de-line);
+}
+.de-stepper__btn:last-child {
+    border-left: 1px solid var(--de-line);
+}
+.de-stepper__btn:active {
+    background: var(--de-line);
+}
+.de-stepper__val {
+    min-width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--de-ink);
+}
+
+/* ===================== Recommended / alternates ===================== */
+.de-card_reco {
+    border-color: rgba(0, 86, 179, 0.35);
+    background: linear-gradient(180deg, #f2f7ff, #ffffff);
+}
+.de-card_alt {
+    border-color: rgba(178, 106, 0, 0.3);
+}
+.de-alt-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.de-reco {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.7rem;
+    border: 1px solid var(--de-line);
+    border-radius: 10px;
+    background: #fff;
+}
+.de-reco__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+.de-reco__name {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+.de-reco__reason {
+    font-size: 0.73rem;
+    color: var(--de-blue);
+}
+.de-reco__stock {
+    font-size: 0.7rem;
+    color: var(--de-muted);
+}
+.de-reco__foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.de-reco__price {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--de-navy);
+}
+
+/* ===================== Cart ===================== */
+.de-cart__lines {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
+}
+.de-cart__line {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 0.6rem 0.7rem;
+    border: 1px solid var(--de-line);
+    border-radius: 10px;
+    background: #fbfcfe;
+}
+/* Row 1: name (wraps, never truncated) + remove, vertically centred so the
+   remove button's tap target doesn't open a gap under a single-line name. */
+.de-cart__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+.de-cart__name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.3;
+    min-width: 0;
+}
+.de-cart__remove {
+    flex: none;
+    --sds-c-icon-color-foreground-default: var(--de-muted);
+}
+/* Row 2: stepper on the left, amount on the right */
+.de-cart__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+.de-cart__amounts {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 1.2;
+}
+.de-cart__unit {
+    font-size: 0.7rem;
+    color: var(--de-muted);
+}
+.de-cart__total {
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-align: right;
+    color: var(--de-navy);
+}
+.de-cart__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0.5rem 0 0.75rem;
+}
+.de-cart__labour-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--de-ink);
+    white-space: nowrap;
+}
+.de-cart__labour {
+    flex: 0 0 auto;
+    width: 140px;
+    margin-left: auto;
+    /* Right-to-left just for the labour amount inside this box (inherits into the
+       input across the shadow boundary — no effect on any other field). */
+    direction: rtl;
+    text-align: right;
+}
+
+/* ===================== Totals ===================== */
+.de-totals {
+    border-top: 1px dashed var(--de-line);
+    padding-top: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+.de-totals__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--de-muted);
+}
+.de-totals__row_amc {
+    color: var(--de-green);
+    font-weight: 600;
+}
+/* Remove-AMC control sits left of the amount so the amount stays flush-right
+   and lines up with the Parts / Total figures above and below it. */
+.de-totals__amc-amt {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.15rem;
+}
+.de-totals__amc-val {
+    font-variant-numeric: tabular-nums;
+}
+.de-amc-remove {
+    --sds-c-icon-color-foreground-default: var(--de-muted);
+}
+.de-totals__note {
+    font-size: 0.7rem;
+    color: var(--de-green);
+    text-align: right;
+    margin-top: -0.2rem;
+}
+.de-totals__row_grand {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--de-navy);
+    border-top: 1px solid var(--de-line);
+    padding-top: 0.5rem;
+    margin-top: 0.15rem;
+}
+
+/* ===================== AMC pitch banner ===================== */
+.de-amc-pitch {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    margin-top: 0.9rem;
+    padding: 0.8rem 0.9rem;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(120deg, var(--de-navy), var(--de-blue));
+    color: #fff;
+    cursor: pointer;
+    text-align: left;
+}
+.de-amc-pitch__text {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.de-amc-pitch__text strong {
+    font-size: 0.9rem;
+}
+.de-amc-pitch__text span {
+    font-size: 0.73rem;
+    opacity: 0.9;
+}
+
+/* ===================== Saved banner ===================== */
+.de-saved {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+.de-saved .de-section-title {
+    margin-bottom: 0.2rem;
+}
+.de-saved .de-hint {
+    margin: 0;
+}
+
+/* ===================== WhatsApp ===================== */
+.de-wa {
+    margin-top: 0.9rem;
+}
+.de-wa__head {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: var(--de-muted);
+    margin-bottom: 0.5rem;
+}
+.de-wa__bubble {
+    background: #dcf8c6;
+    border-radius: 12px 12px 12px 4px;
+    padding: 0.75rem 0.9rem;
+    max-width: 92%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.de-wa__line {
+    font-size: 0.8rem;
+    line-height: 1.45;
+    margin: 0;
+    color: #0b3d0b;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+/* Section headings rendered bold instead of *asterisk* WhatsApp markdown. */
+.de-wa__line_bold {
+    font-weight: 800;
+}
+/* Blank source lines collapse to zero height, so a section break is applied
+   as top spacing on the line that follows the gap. */
+.de-wa__line_gap {
+    margin-top: 0.7rem;
+}
+
+/* ===================== Embed slots ===================== */
+.de-embed {
+    margin-top: 0.5rem;
+}
+.de-embed_amc {
+    margin-top: 1rem;
+    border-top: 1px dashed var(--de-line);
+    padding-top: 1rem;
+}
+
+/* ===================== Actions ===================== */
+.de-actions {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0 0.25rem;
+}
+.de-actions_end {
+    justify-content: flex-end;
+}
+.de-actions_split {
+    justify-content: space-between;
+}
+/* Shared primary action button — the dark navy→blue "highlight panel" gradient,
+   matching the header and AMC banner. Used for Continue / Back / Save so every
+   action reads as the same size and colour. */
+.de-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0.85rem 1rem;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(120deg, var(--de-navy), var(--de-blue));
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.1;
+    white-space: nowrap;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 43, 92, 0.18);
+    transition: filter 0.15s, box-shadow 0.15s;
+}
+.de-btn:hover {
+    filter: brightness(1.06);
+}
+.de-btn:active {
+    filter: brightness(0.95);
+    box-shadow: 0 1px 4px rgba(0, 43, 92, 0.18);
+}
+.de-btn:disabled {
+    opacity: 0.55;
+    cursor: default;
+    filter: none;
+}
+/* Full-width variant (Continue to Estimate). */
+.de-btn_block {
+    width: 100%;
+    flex: 1 1 100%;
+}
+/* Inline variant (Send, next to an input) — sizes to its content, not stretched. */
+.de-btn_inline {
+    flex: 0 0 auto;
+    width: auto;
+    padding: 0.75rem 1.15rem;
+}
+/* Outline variant (Back) — same size/shape, navy outline instead of a fill. */
+.de-btn_ghost {
+    background: transparent;
+    color: var(--de-navy);
+    border: 1.5px solid var(--de-navy);
+    box-shadow: none;
+}
+.de-btn_ghost:hover {
+    filter: none;
+    background: rgba(0, 43, 92, 0.06);
+}
+.de-btn_ghost:active {
+    filter: none;
+    background: rgba(0, 43, 92, 0.12);
+    box-shadow: none;
+}
+.de-btn .de-btn__icon {
+    --sds-c-icon-color-foreground-default: #fff;
+    --slds-c-icon-color-foreground: #fff;
+}
+/* Ghost (Back) — arrow matches the navy font colour. Declared last + higher
+   specificity so it wins over the white brand-icon rule above. */
+.de-btn.de-btn_ghost .de-btn__icon {
+    --sds-c-icon-color-foreground-default: var(--de-navy);
+    --slds-c-icon-color-foreground: var(--de-navy);
+}
+
+/* Trailing search icon sitting INSIDE the search box, at its right edge (decorative). */
+.de-search__icon {
+    position: absolute;
+    right: 0.65rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    --sds-c-icon-color-foreground-default: var(--de-muted);
+}
+
+/* ===================== AMC modal ===================== */
+.de-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.de-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 20, 45, 0.55);
+    animation: de-fade 0.28s ease-out;
+}
+.de-modal__panel {
+    position: relative;
+    background: var(--de-surface);
+    width: 100%;
+    max-width: 720px;
+    max-height: 92vh;
+    overflow-y: auto;
+    border-radius: 18px 18px 0 0;
+    /* NOTE: no `will-change: transform` here. It would persist a transform
+       containing block after the slide-up animation ends, which re-anchors the
+       embedded T&C bottom-sheet's `position: fixed` to this scrollable panel
+       instead of the viewport — so once the panel was scrolled the sheet rode up
+       with the content and its backdrop no longer covered the screen. */
+    animation: de-sheet-up 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes de-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes de-sheet-up {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+.de-modal__close {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    z-index: 2;
+    --slds-c-button-color-background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+}
+@keyframes de-slide-up {
+    from { transform: translateY(24px); opacity: 0.6; }
+    to { transform: translateY(0); opacity: 1; }
+}
+.de-modal__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+.de-modal__title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--de-navy);
+    margin: 0 0 0.15rem;
+}
+
+/* ===================== AMC cards ===================== */
+.de-amc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.6rem;
+}
+.de-amc-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+    padding: 1rem 0.85rem;
+    border: 1px solid var(--de-line);
+    border-radius: 14px;
+    background: #fbfcfe;
+}
+.de-amc-card_hero {
+    border-color: var(--de-blue);
+    background: linear-gradient(180deg, #eef5ff, #ffffff);
+    box-shadow: 0 4px 14px rgba(0, 86, 179, 0.15);
+}
+.de-amc-badge {
+    position: absolute;
+    top: -10px;
+    right: 12px;
+    background: var(--de-accent);
+    color: #fff;
+    font-size: 0.66rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 20px;
+}
+.de-amc-card__dur {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--de-muted);
+}
+.de-amc-card__amt {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--de-navy);
+}
+.de-amc-card__disc {
+    font-size: 0.72rem;
+    color: var(--de-green);
+    font-weight: 600;
+}
+.de-amc-card__disc s {
+    color: var(--de-muted);
+    margin-right: 0.2rem;
+}
+.de-amc-card__type {
+    font-size: 0.72rem;
+    color: var(--de-muted);
+}
+.de-amc-card__btn {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+/* ===================== Responsive ===================== */
+@media (min-width: 560px) {
+    .de-chips {
+        grid-template-columns: 1fr 1fr;
+    }
+    .de-parts,
+    .de-reco-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}

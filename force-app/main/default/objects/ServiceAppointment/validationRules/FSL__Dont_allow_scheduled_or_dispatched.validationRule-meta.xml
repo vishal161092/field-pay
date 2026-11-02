@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FSL__Dont_allow_scheduled_or_dispatched</fullName>
+    <active>true</active>
+    <description>Don&apos;t allow creation of service with status scheduled or  dispatched</description>
+    <errorConditionFormula>AND($Setup.FSL__Service_Creation_Validation_Rules__c.FSL__Service_Creation_Status_Validation__c,AND(ISNEW(),(OR(ISPICKVAL(StatusCategory, &quot;Scheduled&quot;),ISPICKVAL(StatusCategory, &quot;Dispatched&quot;)))))</errorConditionFormula>
+    <errorMessage>New service appointment cannot be created in scheduled or  dispatched statuses.</errorMessage>
+</ValidationRule>

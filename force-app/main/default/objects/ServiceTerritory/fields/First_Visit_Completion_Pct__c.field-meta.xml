@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>First_Visit_Completion_Pct__c</fullName>
+    <description>KPI: completed jobs with no repeat visit on the same Asset within 30 days, divided by completed jobs (trailing 90 days). Auto-calculated by ServiceTerritoryKPICalculator.</description>
+    <inlineHelpText>Share of jobs resolved on the first visit (no return within 30 days).</inlineHelpText>
+    <label>First-Visit Completion %</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Percent</type>
+</CustomField>

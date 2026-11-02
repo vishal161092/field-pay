@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SDO_OMS_Is_OMS_Ready__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Bill Macaulay Oct 2022
+Used by flow SDO_OMS_Update_CPQ_Order_for_OMS</description>
+    <label>Is OMS Ready</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>sfsdg__All_ServiceAppointments</fullName>
+    <columns>Case__c</columns>
+    <columns>Name</columns>
+    <columns>SchedStartTime</columns>
+    <columns>SchedEndTime</columns>
+    <columns>ServiceTerritory</columns>
+    <columns>Status</columns>
+    <columns>WorkType</columns>
+    <columns>Account</columns>
+    <columns>CreatedDate</columns>
+    <columns>FSL__GanttLabel__c</columns>
+    <columns>FSL__Emergency__c</columns>
+    <columns>EarliestStartTime</columns>
+    <columns>LatestEndTime</columns>
+    <columns>sfsdg__latitude__c</columns>
+    <columns>sfsdg__longitude__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Service Appointments</label>
+</ListView>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FSL__Hide_Emergency_Map__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Determines if the map will be shown on the emergency wizard</description>
+    <label>Hide Emergency Map</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

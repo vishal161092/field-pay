@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CSAT_Score__c</fullName>
+    <description>KPI: customer satisfaction score for the territory. Manual entry - no SurveyResponse data exists in the org yet; wire to a survey source when available.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Average customer satisfaction score (manual entry until a survey source is connected).</inlineHelpText>
+    <label>CSAT Score</label>
+    <precision>3</precision>
+    <required>false</required>
+    <scale>1</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

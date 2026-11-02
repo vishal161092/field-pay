@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Field_Technicians__c</fullName>
+    <description>KPI: count of Service Territory Members whose resource is a field Technician. Auto-calculated by ServiceTerritoryKPICalculator.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Number of field technicians assigned to this territory.</inlineHelpText>
+    <label>Total Field Technicians</label>
+    <precision>4</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TravelTimeBuffer</fullName>
+    <inlineHelpText>Number of minutes added to the estimated travel time to cover additional time, such as for parking. Enter a value between 0 and 120.</inlineHelpText>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+</CustomField>

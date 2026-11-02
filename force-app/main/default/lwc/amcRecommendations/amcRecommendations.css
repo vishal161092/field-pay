@@ -1,0 +1,365 @@
+/* amcRecommendations — premium mobile-first AMC upsell sheet (Aeris).
+   Branded tokens mirror technicianHome so the action feels native to the app. */
+:host {
+    --amc-brand: #ec1c24;          /* Aeris red */
+    --amc-brand-dark: #b8151b;
+    --amc-tint: #fdecec;
+    --amc-ink: #16325c;
+    --amc-ink-2: #24406e;
+    --amc-muted: #5c6b7a;
+    --amc-line: #e6e8ec;
+    --amc-success: #2e844a;
+    --amc-radius: 0.85rem;
+
+    display: block;
+    background: #f3f4f6;
+    min-height: 100%;
+}
+
+.amc-root {
+    max-width: 640px;
+    margin: 0 auto;
+    position: relative;
+    min-height: 100%;
+}
+
+.amc-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40vh;
+}
+
+/* ---- Header --------------------------------------------------------------- */
+.amc-header {
+    position: relative;
+    overflow: hidden;
+    padding: 1.1rem 1.1rem 1rem;
+    color: #fff;
+    background:
+        radial-gradient(120% 90% at 100% 0%, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 55%),
+        linear-gradient(135deg, var(--amc-ink) 0%, var(--amc-ink-2) 100%);
+    border-bottom-left-radius: 1.4rem;
+    border-bottom-right-radius: 1.4rem;
+    box-shadow: 0 6px 16px rgba(12, 61, 110, 0.28);
+}
+.amc-header__glow {
+    position: absolute;
+    right: -30%;
+    top: -60%;
+    width: 90%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 60%);
+    pointer-events: none;
+}
+.amc-header__row {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+.amc-header__chip {
+    flex: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 0.7rem;
+    background: var(--amc-brand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 10px rgba(236, 28, 36, 0.5);
+}
+.amc-header__text { flex: 1; min-width: 0; }
+.amc-header__eyebrow {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; opacity: 0.85;
+}
+.amc-header__title { font-size: 1.4rem; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; }
+.amc-header__sub { font-size: 0.82rem; opacity: 0.9; margin-top: 0.15rem; }
+
+.amc-iconbtn {
+    flex: none;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.16);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+}
+.amc-iconbtn:active { background: rgba(255, 255, 255, 0.3); }
+.amc-iconbtn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.amc-iconbtn_dark { background: #eef1f5; }
+.amc-iconbtn_dark:active { background: #e0e4ea; }
+
+.amc-header__pill {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.9rem;
+    padding: 0.28rem 0.7rem;
+    font-size: 0.74rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    background: rgba(46, 132, 74, 0.9);
+}
+
+/* ---- Body ----------------------------------------------------------------- */
+.amc-body {
+    padding: 1rem 0.9rem 6rem;   /* room for the sticky cart bar */
+}
+.amc-section {
+    font-size: 0.8rem; font-weight: 700; color: var(--amc-muted);
+    text-transform: uppercase; letter-spacing: 0.04em;
+    margin: 0 0 0.55rem 0.2rem;
+}
+.amc-section_sp { margin-top: 1.25rem; }
+
+/* ---- Plan card ------------------------------------------------------------ */
+.amc-card {
+    position: relative;
+    background: #fff;
+    border: 1px solid var(--amc-line);
+    border-radius: var(--amc-radius);
+    padding: 1rem;
+    margin-bottom: 0.85rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    animation: amc-rise 300ms ease-out;
+}
+.amc-card_hero {
+    border: none;
+    padding-top: 2.1rem;
+    background:
+        linear-gradient(180deg, #ffffff 0%, #fff7f7 100%);
+    box-shadow: 0 8px 22px rgba(236, 28, 36, 0.18);
+    outline: 2px solid var(--amc-brand);
+    outline-offset: -2px;
+}
+.amc-card__ribbon {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    display: flex; align-items: center; justify-content: center;
+    gap: 0.3rem;
+    padding: 0.35rem;
+    font-size: 0.72rem; font-weight: 800; letter-spacing: 0.03em;
+    color: #fff;
+    background: linear-gradient(135deg, var(--amc-brand) 0%, var(--amc-brand-dark) 100%);
+    border-top-left-radius: var(--amc-radius);
+    border-top-right-radius: var(--amc-radius);
+}
+.amc-tag {
+    position: absolute;
+    top: 0.85rem; right: 0.85rem;
+    font-size: 0.66rem; font-weight: 800; letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--amc-brand);
+    background: var(--amc-tint);
+    padding: 0.18rem 0.5rem;
+    border-radius: 9999px;
+}
+
+.amc-card__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+.amc-card__type { font-size: 1.05rem; font-weight: 800; color: var(--amc-ink); }
+.amc-card__dur { font-size: 0.82rem; color: var(--amc-muted); margin-top: 0.1rem; }
+
+.amc-card__price { text-align: right; display: flex; flex-direction: column; align-items: flex-end; }
+.amc-card__amt { font-size: 1.4rem; font-weight: 800; color: var(--amc-ink); line-height: 1.1; }
+.amc-card__list {
+    font-size: 0.82rem; color: var(--amc-muted);
+    text-decoration: line-through; margin-top: 0.1rem;
+}
+.amc-card__off { font-size: 0.78rem; font-weight: 800; color: var(--amc-brand); margin-top: 0.05rem; }
+.amc-card__permo { font-size: 0.72rem; color: var(--amc-muted); margin-top: 0.15rem; }
+
+/* Features (hero only) */
+.amc-feat {
+    margin: 0.9rem 0 0.2rem;
+    display: grid;
+    gap: 0.4rem;
+}
+.amc-feat__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.45rem;
+    font-size: 0.85rem;
+    color: var(--amc-ink);
+}
+.amc-feat__tick { --sds-c-icon-color-foreground-default: var(--amc-success); flex: none; margin-top: 0.1rem; }
+
+/* Card actions */
+.amc-card__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* ---- Buttons -------------------------------------------------------------- */
+.amc-btn {
+    min-height: 44px;
+    padding: 0 0.9rem;
+    border-radius: 0.6rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: filter 120ms ease, background 120ms ease;
+}
+.amc-btn:focus-visible { outline: 2px solid var(--amc-ink); outline-offset: 2px; }
+.amc-btn:disabled { opacity: 0.6; cursor: default; }
+
+.amc-btn_ghost {
+    flex: none;
+    background: #fff;
+    color: var(--amc-ink);
+    border-color: var(--amc-line);
+    padding: 0 0.75rem;
+}
+.amc-btn_ghost:active { background: #f3f4f6; }
+
+.amc-btn_soft {
+    flex: 1;
+    background: var(--amc-tint);
+    color: var(--amc-brand-dark);
+}
+.amc-btn_soft:active { filter: brightness(0.97); }
+
+.amc-btn_primary {
+    flex: 1;
+    color: #fff;
+    background: linear-gradient(135deg, var(--amc-brand) 0%, var(--amc-brand-dark) 100%);
+    box-shadow: 0 2px 8px rgba(236, 28, 36, 0.35);
+}
+.amc-btn_primary:active { filter: brightness(1.08); }
+
+.amc-btn_block { width: 100%; justify-content: center; }
+
+/* ---- Fine print ----------------------------------------------------------- */
+.amc-fineprint {
+    font-size: 0.72rem;
+    color: var(--amc-muted);
+    line-height: 1.4;
+    margin: 0.5rem 0.2rem 0;
+}
+
+/* ---- Sticky cart bar ------------------------------------------------------ */
+.amc-cartbar {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    max-width: 640px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.7rem 0.9rem;
+    background: #fff;
+    border-top: 1px solid var(--amc-line);
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
+    z-index: 20;
+}
+.amc-cartbar__info { display: flex; flex-direction: column; line-height: 1.15; }
+.amc-cartbar__count { font-size: 0.72rem; color: var(--amc-muted); text-transform: uppercase; letter-spacing: 0.03em; }
+.amc-cartbar__total { font-size: 1.15rem; font-weight: 800; color: var(--amc-ink); }
+.amc-cartbar__cta { flex: 1; }
+
+/* ---- Success -------------------------------------------------------------- */
+.amc-success {
+    padding: 2rem 1.25rem 1.5rem;
+    text-align: center;
+    animation: amc-rise 320ms ease-out;
+}
+.amc-success__badge {
+    width: 4rem; height: 4rem; margin: 0 auto 0.75rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--amc-success) 0%, #1f6b3a 100%);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 18px rgba(46, 132, 74, 0.45);
+    animation: amc-pop 380ms cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+.amc-success__title { font-size: 1.35rem; font-weight: 800; color: var(--amc-ink); }
+.amc-success__sub { font-size: 0.88rem; color: var(--amc-muted); margin-top: 0.25rem; }
+
+.amc-success__list {
+    text-align: left;
+    margin: 1.25rem 0;
+    display: grid;
+    gap: 0.5rem;
+}
+.amc-success__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    border: 1px solid var(--amc-line);
+    border-radius: var(--amc-radius);
+    padding: 0.75rem 0.9rem;
+}
+.amc-success__num { font-weight: 800; color: var(--amc-ink); }
+.amc-success__meta { font-size: 0.78rem; color: var(--amc-muted); margin-top: 0.1rem; }
+.amc-success__amt { font-weight: 800; color: var(--amc-brand); }
+
+.amc-success__actions { display: grid; gap: 0.5rem; margin-top: 0.5rem; }
+
+/* ---- T&C bottom sheet ----------------------------------------------------- */
+.amc-sheet {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: flex-end;
+    z-index: 9000;
+    animation: amc-fade 160ms ease-out;
+}
+.amc-sheet__panel {
+    background: #fff;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    border-top-left-radius: 1.2rem;
+    border-top-right-radius: 1.2rem;
+    padding: 0.6rem 1.1rem 1.2rem;
+    max-height: 85vh;
+    overflow-y: auto;
+    animation: amc-slide-up 240ms ease-out;
+}
+.amc-sheet__grip {
+    width: 2.5rem; height: 0.28rem;
+    background: #d4d8de;
+    border-radius: 9999px;
+    margin: 0.2rem auto 0.75rem;
+}
+.amc-sheet__head { display: flex; align-items: center; justify-content: space-between; }
+.amc-sheet__title { font-size: 1.1rem; font-weight: 800; color: var(--amc-ink); }
+.amc-sheet__lead { font-size: 0.85rem; font-weight: 700; color: var(--amc-brand-dark); margin: 0.5rem 0 0.75rem; }
+.amc-sheet__terms {
+    list-style: disc;
+    padding-left: 1.1rem;
+    display: grid;
+    gap: 0.45rem;
+    font-size: 0.85rem;
+    color: var(--amc-ink);
+    margin-bottom: 1rem;
+}
+
+/* ---- Animations ----------------------------------------------------------- */
+@keyframes amc-rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes amc-pop {
+    from { transform: scale(0.6); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+@keyframes amc-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes amc-slide-up {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .amc-card, .amc-success, .amc-success__badge, .amc-sheet, .amc-sheet__panel { animation: none; }
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Secondary_Start_Pincode__c</fullName>
+    <description>Start of a secondary (overflow / adjacent) pincode range this territory also covers.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Lowest pincode in the territory&apos;s secondary coverage band.</inlineHelpText>
+    <label>Secondary Start Pincode</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

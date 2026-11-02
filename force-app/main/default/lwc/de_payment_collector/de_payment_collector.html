@@ -1,0 +1,127 @@
+<template>
+    <div class="ps-root">
+        <div class="ps-header">
+            <span class="ps-header__label">Collect Payment</span>
+            <span class="ps-header__cust">{customerLabel}</span>
+        </div>
+
+        <!-- STEP: amount -->
+        <template lwc:if={isAmount}>
+            <div class="ps-body">
+                <lightning-input type="number" formatter="currency" step="1"
+                    label="Amount to collect" value={amount} onchange={handleAmountChange}
+                    class="ps-amount-input" data-name="amount"></lightning-input>
+                <p class="ps-hint">Auto-loaded from the finalized estimate — edit if needed.</p>
+                <button class="ps-btn ps-btn_brand" onclick={goToMethod}>Continue</button>
+            </div>
+        </template>
+
+        <!-- STEP: method selection -->
+        <template lwc:elseif={isMethod}>
+            <div class="ps-body">
+                <p class="ps-amount-chip">{amountLabel}</p>
+                <p class="ps-section">Choose a payment method</p>
+                <div class="ps-grid">
+                    <template for:each={methods} for:item="m">
+                        <button key={m.key} data-key={m.key} class="ps-method" onclick={chooseMethod}>
+                            <span class="ps-method__emoji">{m.emoji}</span>
+                            <span class="ps-method__label">{m.label}</span>
+                            <span class="ps-method__desc">{m.desc}</span>
+                        </button>
+                    </template>
+                </div>
+                <button class="ps-btn ps-btn_link" onclick={backToAmount}>← Edit Amount</button>
+            </div>
+        </template>
+
+        <!-- STEP: card -->
+        <template lwc:elseif={isCard}>
+            <div class="ps-body">
+                <p class="ps-amount-chip">{amountLabel}</p>
+                <p class="ps-section">💳 Card payment</p>
+                <lightning-input label="Card number" value={cardNumber} maxlength="19"></lightning-input>
+                <div class="ps-row">
+                    <lightning-input label="Expiry" value={cardExpiry} class="ps-row__col"></lightning-input>
+                    <lightning-input label="CVV" value={cardCvv} maxlength="4" class="ps-row__col"></lightning-input>
+                </div>
+                <lightning-input label="Name on card" value={cardName}></lightning-input>
+                <button class="ps-btn ps-btn_brand" onclick={handleCard}>{payLabel}</button>
+                <button class="ps-btn ps-btn_link" onclick={backToMethod}>← Back</button>
+            </div>
+        </template>
+
+        <!-- STEP: upi -->
+        <template lwc:elseif={isUpi}>
+            <div class="ps-body ps-center">
+                <p class="ps-amount-chip">{amountLabel}</p>
+                <p class="ps-section">📱 Scan to pay (UPI)</p>
+                <div class="ps-qr" aria-label="Mock UPI QR code">
+                    <div class="ps-qr__grid">
+                        <span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+                <p class="ps-upi-id">aeris@upi</p>
+                <p class="ps-hint">Waiting for the customer to pay…</p>
+                <button class="ps-btn ps-btn_brand" onclick={handleUpi}>Simulate Payment Received</button>
+                <button class="ps-btn ps-btn_link" onclick={backToMethod}>← Back</button>
+            </div>
+        </template>
+
+        <!-- STEP: payment link -->
+        <template lwc:elseif={isLink}>
+            <div class="ps-body">
+                <p class="ps-amount-chip">{amountLabel}</p>
+                <p class="ps-section">🔗 Share payment link</p>
+                <lightning-input label="Payment link" value={paymentLink} readonly></lightning-input>
+                <div class="ps-row">
+                    <button class="ps-btn ps-btn_neutral ps-row__col" onclick={copyLink}>Copy</button>
+                    <button class="ps-btn ps-btn_neutral ps-row__col" onclick={shareLink}>Share</button>
+                </div>
+                <button class="ps-btn ps-btn_brand" onclick={handleLink}>Mark as Paid</button>
+                <button class="ps-btn ps-btn_link" onclick={backToMethod}>← Back</button>
+            </div>
+        </template>
+
+        <!-- STEP: cash -->
+        <template lwc:elseif={isCash}>
+            <div class="ps-body ps-center">
+                <p class="ps-amount-chip">{amountLabel}</p>
+                <p class="ps-section">💵 Cash payment</p>
+                <p class="ps-hint">Confirm you have received this amount in cash.</p>
+                <button class="ps-btn ps-btn_brand" onclick={handleCash}>Confirm Cash Received</button>
+                <button class="ps-btn ps-btn_link" onclick={backToMethod}>← Back</button>
+            </div>
+        </template>
+
+        <!-- STEP: processing -->
+        <template lwc:elseif={isProcessing}>
+            <div class="ps-body ps-center ps-processing">
+                <lightning-spinner alternative-text="Processing payment" size="medium"></lightning-spinner>
+                <p class="ps-hint slds-m-top_medium">Processing payment…</p>
+            </div>
+        </template>
+
+        <!-- STEP: success -->
+        <template lwc:elseif={isSuccess}>
+            <div class="ps-body ps-center">
+                <div class="ps-tick">✓</div>
+                <p class="ps-success-title">Payment successful</p>
+                <p class="ps-success-amt">{amountLabel}</p>
+                <div class="ps-receipt">
+                    <div class="ps-receipt__row"><span>Method</span><span>{methodLabel}</span></div>
+                    <div class="ps-receipt__row"><span>Transaction</span><span>{txnId}</span></div>
+                    <div class="ps-receipt__row"><span>Paid at</span><span>{paidAtLabel}</span></div>
+                    <div class="ps-receipt__row"><span>Customer</span><span>{customerLabel}</span></div>
+                </div>
+                <template lwc:if={recordedOffline}>
+                    <p class="ps-hint">Saved locally — it will record when you're back online.</p>
+                </template>
+                <button class="ps-btn ps-btn_brand" onclick={done}>Done</button>
+            </div>
+        </template>
+    </div>
+</template>

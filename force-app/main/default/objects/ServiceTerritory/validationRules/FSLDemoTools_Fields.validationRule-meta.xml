@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FSLDemoTools_Fields</fullName>
+    <active>false</active>
+    <errorConditionFormula>OR( ISCHANGED(  FSLDemoTools_Original_Geolocation__Latitude__s  ),ISCHANGED(   FSLDemoTools_Original_Geolocation__Longitude__s   )   , ISCHANGED(  FSLDemoTools_Original_Name__c  )  , ISCHANGED(  FSLDemoTools_Original_Timezone__c  )  )</errorConditionFormula>
+    <errorMessage>You can&apos;t edit the FSLDemoTools Master data fields</errorMessage>
+</ValidationRule>

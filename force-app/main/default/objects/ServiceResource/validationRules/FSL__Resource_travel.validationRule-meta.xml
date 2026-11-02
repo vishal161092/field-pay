@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FSL__Resource_travel</fullName>
+    <active>true</active>
+    <errorConditionFormula>FSL__Travel_Speed__c &lt;= 0</errorConditionFormula>
+    <errorDisplayField>FSL__Travel_Speed__c</errorDisplayField>
+    <errorMessage>Resource travel speed must be greater than 0.</errorMessage>
+</ValidationRule>

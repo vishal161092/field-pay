@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AppointmentUrlFormula__c</fullName>
+    <description>SE: please change the url of this field to match your community domain name. Replace &lt;yourcommunitydomain&gt; with your actual community domain in both occurrences. The formula should look something like:
+
+if(text($User.UserType)  = &apos;Guest&apos;,
+HYPERLINK(&quot;https://sdodemo-main-166ce2cf6b6-172-17bdfda91fe.force.com/professional/s/guestrescheduling?anum=&quot; &amp; AppointmentNumber , &quot;Appointment Link&quot;), 
+HYPERLINK(&quot;https://sdodemo-main-166ce2cf6b6-172-17bdfda91fe.force.com/professional/s/serviceappointment/&quot; &amp;  Id  , &quot;Appointment Link&quot;))</description>
+    <externalId>false</externalId>
+    <formula>if(text($User.UserType)  = &apos;Guest&apos;,
+HYPERLINK(&quot;https://&lt;yourcommunitydomain&gt;.force.com/professional/s/guestrescheduling?anum=&quot; &amp; AppointmentNumber , &quot;Appointment Link&quot;), 
+HYPERLINK(&quot;https://&lt;yourcommunitydomain&gt;.force.com/professional/s/scheduler-appointment?Id=&quot; &amp;  Id  , &quot;Appointment Link&quot;))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>&lt;yourcommunitydomain&gt;</inlineHelpText>
+    <label>AppointmentUrlFormula</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

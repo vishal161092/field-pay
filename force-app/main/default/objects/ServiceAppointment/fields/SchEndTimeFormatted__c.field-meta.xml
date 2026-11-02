@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SchEndTimeFormatted__c</fullName>
+    <description>Einstein Chatbot formatted field</description>
+    <externalId>false</externalId>
+    <formula>TEXT(IF( OR( VALUE( MID( TEXT( SchedEndTime - (7/24) ), 12, 2 ) ) = 0, VALUE( MID( TEXT( SchedEndTime - (7/24) ), 12, 2 ) ) = 12 ), 12, VALUE( MID( TEXT( SchedEndTime - (7/24) ), 12, 2 ) ) - IF( VALUE( MID( TEXT( SchedEndTime - (7/24) ), 12, 2 ) ) &lt; 12, 0, 12 ) )) 
+
+&amp; &apos;:&apos; &amp; 
+Right(&apos;0&apos; &amp; TEXT(VALUE( MID( TEXT( SchedEndTime - (7/24) ), 15, 2 ) )), 2) 
+
+&amp; &apos; &apos; &amp; 
+IF( VALUE( MID( TEXT( SchedEndTime - (7/24) ), 12, 2 ) ) &lt; 12, &quot;AM&quot;, &quot;PM&quot; )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>SchEndTimeFormatted</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

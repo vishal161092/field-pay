@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opt_KPI_Reset__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Marking this field &apos;TRUE&quot; will execute a process builder to clear out the values within the fields for the &quot;Optimization KPI&quot; reports and Dashboards.</description>
+    <label>Opt KPI Reset</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

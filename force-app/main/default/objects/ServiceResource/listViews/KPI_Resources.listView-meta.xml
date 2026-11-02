@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>KPI_Resources</fullName>
+    <columns>Name</columns>
+    <columns>Opt_KPI_Reset__c</columns>
+    <columns>Optimization_KPI__c</columns>
+    <columns>Gantt_Color__c</columns>
+    <columns>Cost_Per_Mile__c</columns>
+    <columns>FSL__Travel_Speed__c</columns>
+    <columns>Original_Travel_Time__c</columns>
+    <columns>Updated_Travel_Time__c</columns>
+    <columns>Travel_Delta__c</columns>
+    <columns>Travel_Savings__c</columns>
+    <columns>Number_of_Jobs_Scheduled__c</columns>
+    <columns>Number_of_Jobs_Optimized__c</columns>
+    <columns>Additional_Jobs_Scheduled__c</columns>
+    <columns>Additional_Job_Revenue__c</columns>
+    <columns>Optimization_Revenue__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Optimization_KPI__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>KPI Resources</label>
+</ListView>

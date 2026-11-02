@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Open_Appointments_Backlog__c</fullName>
+    <description>KPI: currently open appointments (StatusCategory not Completed/Canceled) in this territory. Auto-calculated by ServiceTerritoryKPICalculator.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Count of un-serviced (open) appointments in this territory right now.</inlineHelpText>
+    <label>Open Appointments Backlog</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FSL__O2_Enabled__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Determines if enhanced scheduling and optimization engine is used</description>
+    <label>Use enhanced scheduling and optimization</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

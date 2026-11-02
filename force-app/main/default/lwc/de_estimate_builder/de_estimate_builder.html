@@ -1,0 +1,444 @@
+<template>
+    <div class="de-shell">
+        <!-- ===================== Header ===================== -->
+        <header class="de-header">
+            <div class="de-header__brand">
+                <span class="de-logo">AERIS</span>
+                <div class="de-header__titles">
+                    <h1 class="de-title">Damage Estimate</h1>
+                    <p class="de-subtitle">{headerSubtitle}</p>
+                </div>
+            </div>
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Working" size="small"></lightning-spinner>
+            </template>
+        </header>
+
+        <!-- ===================== Stepper ===================== -->
+        <ul class="de-steps">
+            <template for:each={steps} for:item="s">
+                <li key={s.value} class={s.cls}>
+                    <span class="de-step__dot"></span>
+                    <span class="de-step__label">{s.label}</span>
+                </li>
+            </template>
+        </ul>
+
+        <div class="de-body">
+            <!-- ============================================================
+                 STAGE 1 — IDENTIFY (diagram + searchable parts list w/ stock)
+                 ============================================================ -->
+            <template if:true={isIdentify}>
+                <section class="de-card">
+                    <p class="de-hint">
+                        Identify the faulty part on the customer's unit, then add it to the
+                        estimate. Out-of-stock parts suggest alternates you can add instead.
+                    </p>
+                    <div class="de-diagram">
+                        <img src={diagramUrl} alt="Aeris Split AC component diagram" class="de-diagram__img" />
+                    </div>
+                </section>
+
+                <section class="de-card">
+                    <h2 class="de-section-title">
+                        <lightning-icon icon-name="utility:package" size="x-small" class="de-title-icon"></lightning-icon>
+                        Parts
+                    </h2>
+                    <div class="de-search">
+                        <lightning-input
+                            type="text"
+                            label="Search parts"
+                            variant="label-hidden"
+                            placeholder="Search part name, number or SKU"
+                            value={searchTerm}
+                            onchange={handleTermChange}
+                            onkeyup={handleTermChange}
+                            class="de-search__input">
+                        </lightning-input>
+                        <lightning-icon
+                            icon-name="utility:search"
+                            size="x-small"
+                            alternative-text="Search"
+                            class="de-search__icon">
+                        </lightning-icon>
+                    </div>
+
+                    <div class="de-parts">
+                        <template for:each={identifyPartsView} for:item="p">
+                            <div key={p.code} class={p.partClass}>
+                                <div class="de-part__row">
+                                    <span class="de-part__no">{p.no}</span>
+                                    <div class="de-part__info">
+                                        <span class="de-part__name">{p.name}</span>
+                                        <span class="de-part__code">{p.partNumber}</span>
+                                        <span class="de-part__desc">{p.desc}</span>
+                                        <span class={p.stockClass}>{p.stockLabel}</span>
+                                        <template if:true={p.inCart}>
+                                            <span class="de-incart">
+                                                <lightning-icon icon-name="utility:check" size="xx-small" class="de-incart__tick"></lightning-icon>
+                                                {p.cartQtyLabel}
+                                            </span>
+                                        </template>
+                                    </div>
+                                    <div class="de-part__foot">
+                                        <span class="de-part__price">{p.priceLabel}</span>
+                                        <!-- Out-of-stock: show an alternate finder that expands below -->
+                                        <template if:true={p.outOfStock}>
+                                            <lightning-button-icon
+                                                icon-name="utility:sync"
+                                                variant="border-filled"
+                                                alternative-text="Find alternate parts"
+                                                title="Find alternate parts"
+                                                class="de-alt-toggle"
+                                                data-id={p.productId}
+                                                onclick={handleToggleAlternates}>
+                                            </lightning-button-icon>
+                                        </template>
+                                        <template if:false={p.outOfStock}>
+                                            <template if:true={p.inCart}>
+                                                <lightning-button-icon
+                                                    icon-name="utility:add"
+                                                    variant="border-filled"
+                                                    alternative-text="Add another"
+                                                    title="Add another"
+                                                    class="de-add_incart"
+                                                    data-code={p.code}
+                                                    onclick={handleAddPartFromIdentify}>
+                                                </lightning-button-icon>
+                                            </template>
+                                            <template if:false={p.inCart}>
+                                                <lightning-button-icon
+                                                    icon-name="utility:add"
+                                                    variant="brand"
+                                                    alternative-text="Add to estimate"
+                                                    title="Add to estimate"
+                                                    data-code={p.code}
+                                                    onclick={handleAddPartFromIdentify}>
+                                                </lightning-button-icon>
+                                            </template>
+                                        </template>
+                                    </div>
+                                </div>
+
+                                <!-- Inline alternates, right below the part -->
+                                <template if:true={p.expanded}>
+                                    <div class="de-alt-inline">
+                                        <p class="de-alt-inline__head">
+                                            <lightning-icon icon-name="utility:info_alt" size="xx-small"></lightning-icon>
+                                            Out of stock — add an alternate part
+                                        </p>
+                                        <template if:true={p.altLoading}>
+                                            <p class="de-empty">Finding alternates…</p>
+                                        </template>
+                                        <template if:false={p.altLoading}>
+                                            <template if:true={p.alternates.length}>
+                                                <template for:each={p.alternates} for:item="a">
+                                                    <div key={a.productId} class={a.rowClass}>
+                                                        <div class="de-alt-row__body">
+                                                            <span class="de-alt-row__name">{a.name}</span>
+                                                            <span class="de-alt-row__reason">{a.reason}</span>
+                                                            <span class="de-alt-row__stock">{a.stockLabel}</span>
+                                                            <template if:true={a.inCart}>
+                                                                <span class="de-incart">
+                                                                    <lightning-icon icon-name="utility:check" size="xx-small" class="de-incart__tick"></lightning-icon>
+                                                                    {a.cartQtyLabel}
+                                                                </span>
+                                                            </template>
+                                                        </div>
+                                                        <div class="de-alt-row__foot">
+                                                            <span class="de-alt-row__price">{a.priceLabel}</span>
+                                                            <template if:true={a.inCart}>
+                                                                <lightning-button-icon
+                                                                    icon-name="utility:add"
+                                                                    variant="border-filled"
+                                                                    alternative-text="Add another"
+                                                                    title="Add another"
+                                                                    class="de-add_incart"
+                                                                    data-id={a.productId}
+                                                                    onclick={handleAddSuggestion}>
+                                                                </lightning-button-icon>
+                                                            </template>
+                                                            <template if:false={a.inCart}>
+                                                                <lightning-button-icon
+                                                                    icon-name="utility:add"
+                                                                    variant="brand"
+                                                                    alternative-text="Add alternate"
+                                                                    title="Add alternate"
+                                                                    data-id={a.productId}
+                                                                    onclick={handleAddSuggestion}>
+                                                                </lightning-button-icon>
+                                                            </template>
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                            </template>
+                                            <template if:false={p.alternates.length}>
+                                                <p class="de-empty">No alternate parts configured for this component.</p>
+                                            </template>
+                                        </template>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+
+                        <template if:false={identifyPartsView.length}>
+                            <p class="de-empty">No parts match "{searchTerm}".</p>
+                        </template>
+                    </div>
+                </section>
+
+                <div class="de-actions">
+                    <button type="button" class="de-btn de-btn_block" onclick={goToBuild}>
+                        Continue to Estimate
+                        <lightning-icon icon-name="utility:forward" size="x-small" class="de-btn__icon"></lightning-icon>
+                    </button>
+                </div>
+            </template>
+
+            <!-- ============================================================
+                 STAGE 2 — ESTIMATE (cart only: qty, labour, AMC, totals)
+                 ============================================================ -->
+            <template if:true={isBuild}>
+                <section class="de-card de-cart">
+                    <h2 class="de-section-title">
+                        <lightning-icon icon-name="utility:cart" size="x-small" class="de-title-icon"></lightning-icon>
+                        Estimate
+                    </h2>
+
+                    <template if:true={hasCart}>
+                        <div class="de-cart__lines">
+                            <template for:each={cartRows} for:item="l">
+                                <div key={l.key} class="de-cart__line">
+                                    <div class="de-cart__top">
+                                        <span class="de-cart__name">{l.displayName}</span>
+                                        <lightning-button-icon
+                                            icon-name="utility:delete"
+                                            variant="bare"
+                                            size="small"
+                                            alternative-text="Remove"
+                                            title="Remove"
+                                            class="de-cart__remove"
+                                            data-key={l.key}
+                                            onclick={handleRemoveLine}>
+                                        </lightning-button-icon>
+                                    </div>
+                                    <div class="de-cart__bottom">
+                                        <div class="de-stepper">
+                                            <button type="button" class="de-stepper__btn" title="Decrease"
+                                                data-key={l.key} onclick={handleDecrement}>−</button>
+                                            <span class="de-stepper__val">{l.quantity}</span>
+                                            <button type="button" class="de-stepper__btn" title="Increase"
+                                                data-key={l.key} onclick={handleIncrement}>+</button>
+                                        </div>
+                                        <div class="de-cart__amounts">
+                                            <template if:true={l.showUnit}>
+                                                <span class="de-cart__unit">{l.unitTimesLabel}</span>
+                                            </template>
+                                            <span class="de-cart__total">{l.lineTotalLabel}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                    <template if:false={hasCart}>
+                        <p class="de-empty">No parts added yet. Go back to Identify to add parts.</p>
+                    </template>
+
+                    <!-- Labour -->
+                    <div class="de-cart__meta">
+                        <label class="de-cart__labour-label">Labour (₹)</label>
+                        <lightning-input
+                            type="number"
+                            label="Labour (₹)"
+                            variant="label-hidden"
+                            value={laborCharge}
+                            disabled={amcApplied}
+                            onchange={handleLaborChange}
+                            class="de-cart__labour">
+                        </lightning-input>
+                    </div>
+
+                    <!-- Totals -->
+                    <div class="de-totals">
+                        <div class="de-totals__row">
+                            <span>Parts</span><span>{partsTotalLabel}</span>
+                        </div>
+                        <template if:true={showLabourRow}>
+                            <div class="de-totals__row">
+                                <span>Labour</span>
+                                <template if:true={labourApplies}>
+                                    <span>{labourLabel}</span>
+                                </template>
+                                <template if:false={labourApplies}>
+                                    <span><s class="de-strike">{labourLabel}</s> ₹0</span>
+                                </template>
+                            </div>
+                        </template>
+                        <template if:true={amcApplied}>
+                            <div class="de-totals__row de-totals__row_amc">
+                                <span>{amcAppliedLabel}</span>
+                                <span class="de-totals__amc-amt">
+                                    <lightning-button-icon
+                                        icon-name="utility:close"
+                                        variant="bare"
+                                        size="x-small"
+                                        alternative-text="Remove AMC"
+                                        title="Remove AMC"
+                                        class="de-amc-remove"
+                                        onclick={removeAmc}>
+                                    </lightning-button-icon>
+                                    <span class="de-totals__amc-val">{amcLabel}</span>
+                                </span>
+                            </div>
+                            <div class="de-totals__note">Labour waived under AMC.</div>
+                        </template>
+                        <div class="de-totals__row de-totals__row_grand">
+                            <span>Total</span><span>{grandTotalLabel}</span>
+                        </div>
+                    </div>
+
+                    <!-- AMC pitch -->
+                    <template if:false={amcApplied}>
+                        <button class="de-amc-pitch" onclick={openAmc}>
+                            <lightning-icon icon-name="utility:shield" size="small" variant="inverse"></lightning-icon>
+                            <span class="de-amc-pitch__text">
+                                <strong>Pitch an AMC</strong>
+                                <span>Waive labour &amp; protect the unit — from ₹3,800/yr</span>
+                            </span>
+                            <lightning-icon icon-name="utility:chevronright" size="x-small" variant="inverse"></lightning-icon>
+                        </button>
+                    </template>
+                </section>
+
+                <div class="de-actions de-actions_split">
+                    <button type="button" class="de-btn de-btn_ghost" onclick={backToIdentify}>
+                        <lightning-icon icon-name="utility:back" size="x-small" class="de-btn__icon"></lightning-icon>
+                        Back
+                    </button>
+                    <button type="button" class="de-btn" disabled={isLoading} onclick={handleSave}>
+                        <lightning-icon icon-name="utility:save" size="x-small" class="de-btn__icon"></lightning-icon>
+                        Save Estimate
+                    </button>
+                </div>
+            </template>
+
+            <!-- ============================================================
+                 STAGE 3 — SHARE (WhatsApp mock)
+                 ============================================================ -->
+            <template if:true={isShare}>
+                <section class="de-card de-saved">
+                    <lightning-icon icon-name="utility:success" size="small" variant="success"></lightning-icon>
+                    <div>
+                        <h2 class="de-section-title">Estimate saved</h2>
+                        <p class="de-hint"><strong>{savedEstimateName}</strong> is linked to the Work Order and Asset.</p>
+                    </div>
+                </section>
+
+                <section class="de-card">
+                    <h2 class="de-section-title">
+                        <lightning-icon icon-name="utility:chat" size="x-small" class="de-title-icon"></lightning-icon>
+                        Send on WhatsApp
+                    </h2>
+                    <div class="de-search">
+                        <lightning-input
+                            type="tel"
+                            label="Customer mobile"
+                            variant="label-hidden"
+                            placeholder="+91 90000 00000"
+                            value={waPhone}
+                            onchange={handlePhoneChange}
+                            class="de-search__input">
+                        </lightning-input>
+                        <button type="button" class="de-btn de-btn_inline" disabled={waSending} onclick={handleSendWhatsApp}>
+                            <lightning-icon icon-name="utility:send" size="x-small" class="de-btn__icon"></lightning-icon>
+                            Send
+                        </button>
+                    </div>
+
+                    <template if:true={whatsAppSent}>
+                        <div class="de-wa">
+                            <div class="de-wa__head">
+                                <lightning-icon icon-name="utility:success" size="x-small" variant="success"></lightning-icon>
+                                Sent to {waResult.toPhone} · {waResult.sentAt}
+                            </div>
+                            <div class="de-wa__bubble">
+                                <template for:each={waBodyLines} for:item="ln">
+                                    <p key={ln.id} class={ln.cls}>{ln.text}</p>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+                </section>
+
+                <div class="de-actions de-actions_split">
+                    <button type="button" class="de-btn de-btn_ghost" onclick={backToBuild}>
+                        <lightning-icon icon-name="utility:back" size="x-small" class="de-btn__icon"></lightning-icon>
+                        Back
+                    </button>
+                    <button type="button" class="de-btn" onclick={goToPay}>
+                        <lightning-icon icon-name="utility:moneybag" size="x-small" class="de-btn__icon"></lightning-icon>
+                        Collect Payment
+                    </button>
+                </div>
+            </template>
+
+            <!-- ============================================================
+                 STAGE 4 — PAY (embed de_payment_collector)
+                 ============================================================ -->
+            <template if:true={isPay}>
+                <section class="de-card">
+                    <div class="de-card__nav">
+                        <lightning-button-icon
+                            icon-name="utility:chevronleft"
+                            variant="bare"
+                            alternative-text="Back to summary"
+                            title="Back to summary"
+                            onclick={backToShare}>
+                        </lightning-button-icon>
+                        <h2 class="de-section-title de-section-title_inline">
+                            <lightning-icon icon-name="utility:moneybag" size="x-small" class="de-title-icon"></lightning-icon>
+                            Collect payment
+                        </h2>
+                    </div>
+                    <p class="de-hint">Estimate total <strong>{grandTotalLabel}</strong></p>
+                    <div class="de-embed">
+                        <c-de_payment_collector
+                            record-id={paymentRecordId}
+                            bill-amount={grandTotal}
+                            customer-name={ctx.accountName}
+                            reference={ctx.workOrderNumber}
+                            onpaid={handlePaymentPaid}
+                            onclose={handlePaymentClose}>
+                        </c-de_payment_collector>
+                    </div>
+                </section>
+            </template>
+        </div>
+
+        <!-- ===================== AMC modal ===================== -->
+        <template if:true={showAmcModal}>
+            <section role="dialog" tabindex="-1" class="de-modal" aria-modal="true" aria-label="AMC plans">
+                <div class="de-modal__backdrop" onclick={closeAmc}></div>
+                <div class="de-modal__panel">
+                    <lightning-button-icon
+                        icon-name="utility:close"
+                        variant="bare"
+                        alternative-text="Close"
+                        class="de-modal__close"
+                        onclick={closeAmc}>
+                    </lightning-button-icon>
+
+                    <!-- Cloned AMC recommendations component drives the pitch; it emits
+                         `apply` and the host places the order + waives labour. -->
+                    <c-de_amc_recommendation
+                        record-id={recordId}
+                        customer-name={ctx.accountName}
+                        applied-plan-id={appliedAmcPlanId}
+                        onapply={handleApplyAmc}>
+                    </c-de_amc_recommendation>
+                </div>
+            </section>
+        </template>
+    </div>
+</template>

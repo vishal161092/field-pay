@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>En_Route_Location__c</fullName>
+    <displayLocationInDecimal>true</displayLocationInDecimal>
+    <inlineHelpText>Set this value to the location you want to use for your technicians En Route location. This will be used on the map that the customer sees for the first notification</inlineHelpText>
+    <label>En Route Location</label>
+    <required>false</required>
+    <scale>6</scale>
+    <trackHistory>false</trackHistory>
+    <type>Location</type>
+</CustomField>

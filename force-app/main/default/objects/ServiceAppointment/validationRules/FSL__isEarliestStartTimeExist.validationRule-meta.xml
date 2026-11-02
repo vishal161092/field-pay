@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FSL__isEarliestStartTimeExist</fullName>
+    <active>false</active>
+    <description>Check if EarliestStartTime field exist on service appointment.</description>
+    <errorConditionFormula>ISNULL( EarliestStartTime )</errorConditionFormula>
+    <errorDisplayField>EarliestStartTime</errorDisplayField>
+    <errorMessage>EarliestStartTime field is required</errorMessage>
+</ValidationRule>

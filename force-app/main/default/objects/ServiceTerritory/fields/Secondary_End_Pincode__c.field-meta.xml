@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Secondary_End_Pincode__c</fullName>
+    <description>End of a secondary (overflow / adjacent) pincode range this territory also covers.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Highest pincode in the territory&apos;s secondary coverage band.</inlineHelpText>
+    <label>Secondary End Pincode</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,119 @@
+<template>
+    <div class="amc-root">
+        <!-- Header -->
+        <header class="amc-header">
+            <div class="amc-header__glow"></div>
+            <div class="amc-header__row">
+                <div class="amc-header__chip">
+                    <lightning-icon icon-name="utility:service_appointment" size="small" variant="inverse"></lightning-icon>
+                </div>
+                <div class="amc-header__text">
+                    <p class="amc-header__eyebrow">Aeris Care · AMC</p>
+                    <h1 class="amc-header__title">Extend your protection</h1>
+                    <p class="amc-header__sub">{customerLabel}</p>
+                </div>
+            </div>
+            <div class="amc-header__pill">
+                <lightning-icon icon-name="utility:success" size="xx-small" variant="inverse"></lightning-icon>
+                <span>Apply an AMC to waive today's labour charge</span>
+            </div>
+        </header>
+
+        <div class="amc-body">
+            <!-- Recommended hero -->
+            <p class="amc-section">Recommended for you</p>
+            <article class={recommendedPlan.cardClass}>
+                <div class="amc-card__ribbon">
+                    <lightning-icon icon-name="utility:favorite" size="xx-small" variant="inverse"></lightning-icon>
+                    <span>Best value · Save {recommendedPlan.discountPercent}%</span>
+                </div>
+                <div class="amc-card__head">
+                    <div>
+                        <p class="amc-card__type">{recommendedPlan.amcType}</p>
+                        <p class="amc-card__dur">{recommendedPlan.durationLabel} cover</p>
+                    </div>
+                    <div class="amc-card__price">
+                        <span class="amc-card__amt">{recommendedPlan.amountLabel}</span>
+                        <template lwc:if={recommendedPlan.hasDiscount}>
+                            <span class="amc-card__list">{recommendedPlan.listAmountLabel}</span>
+                        </template>
+                        <span class="amc-card__permo">{recommendedPlan.perMonthLabel}</span>
+                    </div>
+                </div>
+
+                <ul class="amc-feat">
+                    <template for:each={recommendedPlan.features} for:item="f">
+                        <li key={f} class="amc-feat__item">
+                            <lightning-icon icon-name="utility:check" size="xx-small" class="amc-feat__tick"></lightning-icon>
+                            <span>{f}</span>
+                        </li>
+                    </template>
+                </ul>
+
+                <div class="amc-card__actions">
+                    <button class="amc-btn amc-btn_ghost" data-id={recommendedPlan.id} onclick={handleShowTerms}>T&amp;C</button>
+                    <button class="amc-btn amc-btn_primary" data-id={recommendedPlan.id} onclick={handleApply}>
+                        {recommendedPlan.applyLabel}
+                    </button>
+                </div>
+            </article>
+
+            <!-- Other plans -->
+            <p class="amc-section amc-section_sp">More plans</p>
+            <template for:each={otherPlans} for:item="p">
+                <article key={p.id} class="amc-card">
+                    <div class="amc-card__head">
+                        <div>
+                            <p class="amc-card__type">{p.amcType}</p>
+                            <p class="amc-card__dur">{p.durationLabel} cover</p>
+                            <template lwc:if={p.badge}>
+                                <span class="amc-tag">{p.badge}</span>
+                            </template>
+                        </div>
+                        <div class="amc-card__price">
+                            <span class="amc-card__amt">{p.amountLabel}</span>
+                            <template lwc:if={p.hasDiscount}>
+                                <span class="amc-card__list">{p.listAmountLabel}</span>
+                                <span class="amc-card__off">{p.discountLabel}</span>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="amc-card__actions">
+                        <button class="amc-btn amc-btn_ghost" data-id={p.id} onclick={handleShowTerms}>T&amp;C</button>
+                        <button class="amc-btn amc-btn_primary" data-id={p.id} onclick={handleApply}>{p.applyLabel}</button>
+                    </div>
+                </article>
+            </template>
+
+            <p class="amc-fineprint">
+                Prices are inclusive of taxes. AMC begins after the current warranty expires.
+                This is a demo — applying creates a Draft order and waives the labour charge.
+            </p>
+        </div>
+    </div>
+
+    <!-- T&C bottom-sheet -->
+    <template lwc:if={showTerms}>
+        <section class="amc-sheet" role="dialog" aria-modal="true" aria-label="Terms and conditions">
+            <div class="amc-sheet__panel">
+                <div class="amc-sheet__grip"></div>
+                <div class="amc-sheet__head">
+                    <h3 class="amc-sheet__title">Terms &amp; Conditions</h3>
+                    <button class="amc-iconbtn amc-iconbtn_dark" title="Close" onclick={handleCloseTerms}>
+                        <lightning-icon icon-name="utility:close" size="x-small"></lightning-icon>
+                    </button>
+                </div>
+                <p class="amc-sheet__lead">{termsPlan.amcType} · {termsPlan.durationLabel} — {termsPlan.amountLabel}</p>
+                <ul class="amc-sheet__terms">
+                    <li>Coverage commences after the existing manufacturer warranty expires.</li>
+                    <li>Includes labour and genuine Aeris spare parts for listed components.</li>
+                    <li>Excludes physical/liquid damage and unauthorised repairs.</li>
+                    <li>Preventive maintenance visits are scheduled per the plan tier.</li>
+                    <li>Non-transferable without prior written consent from Aeris.</li>
+                    <li>Full terms available at aeris.example/amc-terms.</li>
+                </ul>
+                <button class="amc-btn amc-btn_primary amc-btn_block" onclick={handleCloseTerms}>Got It</button>
+            </div>
+        </section>
+    </template>
+</template>

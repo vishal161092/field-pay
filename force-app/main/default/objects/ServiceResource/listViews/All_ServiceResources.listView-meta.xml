@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_ServiceResources</fullName>
+    <columns>Name</columns>
+    <columns>RelatedRecord</columns>
+    <columns>FSL__Priority__c</columns>
+    <columns>Is_Contractor__c</columns>
+    <columns>Contractor_s_Service_Territory__c</columns>
+    <columns>IsActive</columns>
+    <columns>LastModifiedBy</columns>
+    <columns>ResourceType</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Service Resources</label>
+</ListView>

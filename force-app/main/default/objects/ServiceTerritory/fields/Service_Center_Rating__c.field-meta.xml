@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Service_Center_Rating__c</fullName>
+    <description>Overall ASC score from 1 (poor) to 10 (excellent), computed by ServiceTerritoryKPICalculator as a weighted blend of the KPI scorecard (only KPIs with data are counted).</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Overall service-center rating (1-10) derived from the KPI scorecard.</inlineHelpText>
+    <label>Service Center Rating</label>
+    <precision>3</precision>
+    <required>false</required>
+    <scale>1</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

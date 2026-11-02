@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FSL__InJeopardyReason__c</fullName>
+    <deprecated>false</deprecated>
+    <label>In Jeopardy Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Delayed Start</fullName>
+                <default>false</default>
+                <label>Delayed Start</label>
+            </value>
+            <value>
+                <fullName>Delayed Finish</fullName>
+                <default>false</default>
+                <label>Delayed Finish</label>
+            </value>
+            <value>
+                <fullName>No Response</fullName>
+                <default>false</default>
+                <label>No Response</label>
+            </value>
+            <value>
+                <fullName>Due Date Approaching</fullName>
+                <default>false</default>
+                <label>Due Date Approaching</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FSLDemoTools_Wave_Data__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>this field is used to protect the wave data set from the FSL Demo Tools Restore Utility</description>
+    <label>FSLDemoTools Wave Data</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Alternative_Product__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Alternative Product</label>
+    <referenceTo>Product2</referenceTo>
+    <relationshipLabel>Alternative For</relationshipLabel>
+    <relationshipName>Alternative_For</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

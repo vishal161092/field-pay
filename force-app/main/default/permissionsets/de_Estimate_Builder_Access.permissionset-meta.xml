@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>DE Estimate Builder Access</label>
+    <description>Grants Apex access to de_EstimateBuilderController for the de_estimate_builder LWC so search/save work in the Field Service app. Additive; relies on existing object + original-controller access.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <classAccesses>
+        <apexClass>de_EstimateBuilderController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+</PermissionSet>

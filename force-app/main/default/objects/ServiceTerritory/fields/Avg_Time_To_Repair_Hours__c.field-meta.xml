@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Avg_Time_To_Repair_Hours__c</fullName>
+    <description>KPI: average on-site duration (ActualEndTime - ActualStartTime) over completed appointments (trailing 90 days), in hours. Auto-calculated by ServiceTerritoryKPICalculator.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Average on-site repair time per completed job, in hours.</inlineHelpText>
+    <label>Avg Time to Repair (Hours)</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

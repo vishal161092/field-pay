@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FSSK__FSK_Planned_Scheduled_Start__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field stores the original Scheduled Start Time</description>
+    <label>Planned Scheduled Start</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>DateTime</type>
+</CustomField>

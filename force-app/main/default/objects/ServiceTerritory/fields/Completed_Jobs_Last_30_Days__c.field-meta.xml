@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Completed_Jobs_Last_30_Days__c</fullName>
+    <description>KPI: completed appointments in this territory over the trailing 30 days. Auto-calculated by ServiceTerritoryKPICalculator.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Jobs completed in this territory in the last 30 days.</inlineHelpText>
+    <label>Completed Jobs (Last 30 Days)</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

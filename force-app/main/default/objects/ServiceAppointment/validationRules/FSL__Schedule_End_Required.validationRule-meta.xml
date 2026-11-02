@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FSL__Schedule_End_Required</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISNULL(SchedEndTime) &amp;&amp; NOT(ISNULL(SchedStartTime))</errorConditionFormula>
+    <errorDisplayField>SchedEndTime</errorDisplayField>
+    <errorMessage>Both scheduled start and end are required</errorMessage>
+</ValidationRule>

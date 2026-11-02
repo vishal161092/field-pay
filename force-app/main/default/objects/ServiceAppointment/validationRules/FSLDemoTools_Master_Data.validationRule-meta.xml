@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FSLDemoTools_Master_Data</fullName>
+    <active>false</active>
+    <errorConditionFormula>SDO_Tool_FSLDemoTools_Master_Data__c</errorConditionFormula>
+    <errorDisplayField>AccountId</errorDisplayField>
+    <errorMessage>Can&apos;t Edit FSLDemoTools Master Data</errorMessage>
+</ValidationRule>

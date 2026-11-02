@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Last_Mile_Location__c</fullName>
+    <displayLocationInDecimal>true</displayLocationInDecimal>
+    <inlineHelpText>Set this value to the location you want to use for your technicians LastMile location. This will be used on the map that the customer sees for the second notification</inlineHelpText>
+    <label>Last Mile Location</label>
+    <required>false</required>
+    <scale>6</scale>
+    <trackHistory>false</trackHistory>
+    <type>Location</type>
+</CustomField>

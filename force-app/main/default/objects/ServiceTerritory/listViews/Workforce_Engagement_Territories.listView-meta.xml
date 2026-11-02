@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Workforce_Engagement_Territories</fullName>
+    <columns>Name</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>LastModifiedBy</columns>
+    <columns>ParentTerritory</columns>
+    <columns>OperatingHours</columns>
+    <columns>IsActive</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OperatingHours</field>
+        <operation>contains</operation>
+        <value>Workforce</value>
+    </filters>
+    <label>Workforce Engagement Territories</label>
+</ListView>

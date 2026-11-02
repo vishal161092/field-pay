@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FSL__Time_Dependency__c</fullName>
+    <deprecated>false</deprecated>
+    <label>Time Dependency</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Same Start</fullName>
+                <default>false</default>
+                <label>Same Start</label>
+            </value>
+            <value>
+                <fullName>Start After Finish</fullName>
+                <default>false</default>
+                <label>Start After Finish</label>
+            </value>
+            <value>
+                <fullName>Finish Before Start</fullName>
+                <default>false</default>
+                <label>Finish Before Start</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Number_of_Jobs_Optimized__c</fullName>
+    <description>Captures the number of jobs assigned to the Service Resource after optimization has run. Used to calculate the value of additional utilization after optimization has run.</description>
+    <externalId>false</externalId>
+    <label>Number of Jobs Optimized</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

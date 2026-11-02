@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SchEndDateFormatted__c</fullName>
+    <description>Einstein Chatbot formatted field</description>
+    <externalId>false</externalId>
+    <formula>CASE(MONTH(DATEVALUE( SchedEndTime )), 
+1, &quot;January&quot;, 
+2, &quot;February&quot;, 
+3, &quot;March&quot;, 
+4, &quot;April&quot;, 
+5, &quot;May&quot;, 
+6, &quot;June&quot;, 
+7, &quot;July&quot;, 
+8, &quot;August&quot;, 
+9, &quot;September&quot;, 
+10, &quot;October&quot;, 
+11, &quot;November&quot;, 
+12, &quot;December&quot;, 
+&quot;None&quot;) 
+
+&amp; &apos; &apos; &amp; 
+
+TEXT(Day(DATEVALUE(SchedEndTime))) 
+
+&amp; &apos;, &apos; &amp; 
+
+TEXT(Year(DATEVALUE(SchedEndTime)))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>SchEndDateFormatted</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
